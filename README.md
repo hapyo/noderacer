@@ -81,6 +81,9 @@ For example, if you have a function with the name of the controller and hello fu
 
 
 ## Model Loading ##
+
+Models are optionally available for those who want to use a more traditional MVC approach.
+
 	
 	node.prototype.load = function (racer) {
 	    var method = racer.req.method;
