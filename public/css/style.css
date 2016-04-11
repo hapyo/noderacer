@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+html{overflow-y:scroll; }
+html,body{height:100%; background:#eee;padding:10px;}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0; padding:0;}
+body,input,textarea,select,div,span,button,table{font-family:"NanumGothic","NanumGothicOTF","Malgun Gothic", dotum, "Trebuchet MS", "Lucida Grande", "Tahoma","Helvetica","Arial", "hiragino kaku gothic pro", sans-serif;font-size:12px;letter-spacing:normal;}

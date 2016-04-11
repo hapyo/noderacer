@@ -1,0 +1,125 @@
+/* 
+ * GBS Korea
+ */
+
+
+'use strict';
+var appM2Intro = angular.module('m2Tutorial', ["ngRoute"]).
+        value('baseUrl', '/').
+        config(function($routeProvider) {
+            $routeProvider
+                    .when('/tutorial1', {templateUrl: '1.html'})
+                    .when('/tutorial2', {templateUrl: '2.html'})
+                    .when('/tutorial3', {templateUrl: '3.html'})
+                    .when('/tutorial4', {templateUrl: '4.html'})
+                    .when('/tutorial5', {templateUrl: '5.html'})
+                    .when('/tutorial6_yes', {templateUrl: '6_yes.html'})
+                    .when('/tutorial6_no', {templateUrl: '6_no.html'})                    
+                                        .otherwise({redirectTo: '/tutorial1'});
+        })
+        .controller('cCtrl', function($scope, $http, baseUrl) {
+            $scope.test = "test";
+            $scope.testCfunc = function(test) {
+                alert(test.name + 'Test Function');
+            };
+            alert($scope.test);
+
+        })
+        .controller('ctlRegister', function($scope, $http, baseUrl) {
+         //function ctlRegister($scope) {
+
+        $scope.signup = function() {
+            alert('signup');
+        }
+        
+        
+
+        $scope.list =[];
+        $scope.formData = {};
+        $scope.submit = function() {
+            if ($scope.m_id&&$scope.m_id2) {
+              $scope.list.push(this.m_id);
+            }
+            alert();
+            //how to serialize in json
+            var reqPromise = $http.post(baseUrl+'intro/join',this.formData);// { list: 'client' }
+            reqPromise.success(function(data, status, headers, config) {                                    
+                alert(data);
+            });
+            reqPromise.error(function(data, status, headers, config) {
+                alert('err'+status+" "+data);
+            });
+
+            /*
+            var reqPromise = $http.post(baseUrl+'intro/join',$scope.list);
+            alert('2');
+            reqPromise.success(function(data, status, headers, config) {
+                alert('s');
+            });
+            */
+
+        };
+
+        //ng-repeat
+        var m = { "01":"January","02":"February","03": "March","04": "April","05": "May","06": "June", "07":"July","08": "August","09": "September","10": "October","11": "November", "12":"December"};
+        $scope.month = m;
+
+        var year = new Array();
+
+        var end=2014;
+        var start=end-100;
+        var i=0;
+        for(i=end;i>start;--i){
+            year.push({"year":i,"name":i});
+        }
+        $scope.year=year;
+
+        var day = new Array();
+        var end=31;
+        var start=1;
+        var i=0;
+
+
+        for(i=end;i>=start;--i){
+            day.push({"day":i,"name":i});
+        }
+        $scope.day=day;
+
+    });
+    
+  
+    appM2Intro.run(function($rootScope, $templateCache) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined'){            
+            $templateCache.remove(current.templateUrl);
+        }
+    });
+    });
+    
+    appM2Intro.controller('MainCtrl', function($scope) {
+                alert('1');
+        
+                //$location.path("/");
+                //
+		// create a message to display in our view
+		//$scope.message = 'Everyone come and see how good I look!';
+                
+	});
+
+    appM2Intro.run(['$templateCache', function($templateCache) {
+            $templateCache.removeAll();
+        }]);
+
+
+    appM2Intro.directive('textmatch', function($parse) {
+        return {
+          require: 'ngModel',
+          link: function(scope, elem, attrs, ctrl) {
+            scope.$watch(function() {
+              return $parse(attrs.textmatch)(scope) === ctrl.$modelValue;
+            }, function(currentValue) {
+              ctrl.$setValidity('mismatch', currentValue);
+            });
+          }
+        };
+    });

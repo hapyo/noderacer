@@ -1,0 +1,7 @@
+<%-msg%>
+<br>
+<a href="http://localhost:3000">http://localhost:3000</a>
+<br>
+<a href="http://localhost:3000/racer/printview/true" target="_blank">http://localhost:3000/racer/printview/true</a>
+<br>
+<a href="http://localhost:3000/racer/printview/false" target="_blank">http://localhost:3000/racer/printview/false</a>
