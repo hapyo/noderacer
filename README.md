@@ -190,5 +190,6 @@ Let's look at a simple example of the select.
 
 
 
-> I am planning to supplement the code. We will be adding README Text.
+> I am planning to supplement the code. I will be adding README Text.
+> This module associated with noderacer under development.
 > Thank You.
